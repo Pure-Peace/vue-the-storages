@@ -1,6 +1,6 @@
 {
   "name": "vue-the-storages",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A vue plugin that enhances localStorage/sessionStorage (supports vue2 and vue3). It allows two-way binding of storage data, multi-page data binding, storage event listener, and rich api (async/sync)",
   "main": "index.js",
   "scripts": {},

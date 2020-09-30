@@ -1,24 +1,48 @@
-import { createLocal } from 'the-storages'
+import {
+  createLocal,
+  createSession
+} from 'the-storages'
 
-const mirror = createLocal()
-
-const install = (vueObject, options = {
-  mirrorKey: '$storageData',
-  storageKey: '$storage'
+const install = (vueObject, vtOptions = {
+  localMirrorKey: '$localData',
+  localStorageKey: '$local',
+  sessionMirrorKey: '$sessionData',
+  sessionStorageKey: '$session',
+  options: {
+    vueModule: null,
+    strict: true,
+    mirrorOperation: false,
+    updateMirror: true
+  }
 }) => {
-  if (!options) options = {}
+  if (!vtOptions) vtOptions = {}
 
   const isVue3 = typeof vueObject === 'object'
-  const { mirrorKey, storageKey } = options
+  const {
+    localMirrorKey,
+    localStorageKey,
+    sessionMirrorKey,
+    sessionStorageKey,
+    options
+  } = vtOptions
+
+  const localMirror = createLocal(options)
+  const sessionMirror = createSession(options)
 
   vueObject.mixin({
-    created () {
-      mirror.bindVm(this)
-      this[mirrorKey || '$storageData'] = mirror
-      this[storageKey || '$storage'] = mirror._prx
+    created() {
+      localMirror.bindVm(this)
+      this[localMirrorKey || '$storageData'] = localMirror
+      this[localStorageKey || '$storage'] = localMirror._prx
+
+      sessionMirror.bindVm(this)
+      this[sessionMirrorKey || '$sessionData'] = sessionMirror
+      this[sessionStorageKey || '$session'] = sessionMirror._prx
+
     },
-    [isVue3 ? 'beforeUnmount' : 'beforeDestroy'] () {
-      mirror.unbindVm(this)
+    [isVue3 ? 'beforeUnmount' : 'beforeDestroy']() {
+      localMirror.unbindVm(this)
+      sessionMirror.unbindVm(this)
     }
   })
 }

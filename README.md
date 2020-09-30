@@ -57,10 +57,13 @@ createApp(App).use(vueTheStorages).mount('#app')
 
 ```
 
-#### Default global name: 
+#### Default global names: 
 
-    $storageData (storage mirror object)
-    $storage (storage proxy object)
+    $localData (localStorage mirror object)
+    $local (localStorage proxy object)
+
+    $sessionData (sessionStorage mirror object)
+    $session (sessionStorage proxy object)
 
 #### You can pass in options when registering to modify the global name:
 
@@ -68,7 +71,20 @@ createApp(App).use(vueTheStorages).mount('#app')
 import vueTheStorages from 'vue-the-storages'
 
 // default, you can modify
-const vueTheStoragesOptions = { mirrorKey: '$storageData', storageKey: '$storage' }
+const vueTheStoragesOptions = {
+  localMirrorKey: '$localData',
+  localStorageKey: '$local',
+
+  sessionMirrorKey: '$sessionData',
+  sessionStorageKey: '$session',
+  
+  options: {
+    vueModule: null,
+    strict: true,
+    mirrorOperation: false,
+    updateMirror: true
+  }
+}
 
 // vue2
 Vue.use(vueTheStorages, vueTheStoragesOptions)
@@ -82,8 +98,8 @@ createApp(App).use(vueTheStorages, vueTheStoragesOptions).mount('#app')
 ```html
 <template>
     <div>
-        <div>{{ $storageData }}</div>
-        <div>{{ $storage }}</div>
+        <div>{{ $localData }}</div>
+        <div>{{ $local }}</div>
         <button @click="test">test</button>
     </div>
 </template>
@@ -92,7 +108,10 @@ createApp(App).use(vueTheStorages, vueTheStoragesOptions).mount('#app')
 export default {
     methods: {
         test() {
-            this.$storage.set('hello', { message: 'hello' })
+            this.$local.set('hello', { message: 'halo' })
+            // the same:
+            // this.$local.hello = { message: 'halo' }
+            // this.$local.hello.message 'halo'
         }
     }
 }
@@ -104,9 +123,10 @@ export default {
 
 All APIs are completely consistent, you can refer to
 
+### [Read Samples](#samples) 
+### [Read Docs](#docs)
+
 ## ↓ Below is the description of [the-storages](https://github.com/pure-peace/the-storages)
-
-
 
 
 
