@@ -1,0 +1,28 @@
+{
+  "name": "vue-the-storages",
+  "version": "1.0.0",
+  "description": "A vue plugin that enhances localStorage/sessionStorage (supports vue2 and vue3). It allows two-way binding of storage data, multi-page data binding, storage event listener, and rich api (async/sync)",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pure-peace/vue-the-storages"
+  },
+  "keywords": [
+    "localStorage",
+    "sessionStorage",
+    "vue3",
+    "vue",
+    "plugins",
+    "storage",
+    "listener",
+    "event",
+    "async",
+    "data-binding"
+  ],
+  "author": "Pure-Peace",
+  "license": "MIT",
+  "dependencies": {
+    "the-storages": "^1.0.3"
+  }
+}
