@@ -13,12 +13,15 @@
     "sessionStorage",
     "vue3",
     "vue",
+    "data-binding",
+    "vue-plugins",
+    "vue-cli",
+    "vue-cli-plugin",
     "plugins",
     "storage",
     "listener",
     "event",
-    "async",
-    "data-binding"
+    "async"
   ],
   "author": "Pure-Peace",
   "license": "MIT",
